@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortalStore.Api", "Source\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalStore.Shared", "Source\PortalStore.Shared\PortalStore.Shared.csproj", "{6EEB8260-AD20-453D-9106-D1078F2A3871}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalStore.Infrastructure", "Source\PortalStore.Infrastructure\PortalStore.Infrastructure.csproj", "{A8BDC6CC-A555-4DAC-AAFD-3A91B55254B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{6EEB8260-AD20-453D-9106-D1078F2A3871}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EEB8260-AD20-453D-9106-D1078F2A3871}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EEB8260-AD20-453D-9106-D1078F2A3871}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8BDC6CC-A555-4DAC-AAFD-3A91B55254B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8BDC6CC-A555-4DAC-AAFD-3A91B55254B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8BDC6CC-A555-4DAC-AAFD-3A91B55254B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8BDC6CC-A555-4DAC-AAFD-3A91B55254B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

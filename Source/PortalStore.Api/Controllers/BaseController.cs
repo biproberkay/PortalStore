@@ -56,7 +56,7 @@ namespace PortalStore.Api.Controllers
             var tData = _mapper.Map<TCore,T>(tCore);
             var insertedTData = await _repository.AddAsync(tData); 
             await _unitOfWork.CommitAsync(cancellationToken);
-            return Ok(CustomResult<T>.Success(insertedTData, $"new {nameof(T)} entity have been added"));
+            return Ok(CustomResult<T>.Success(insertedTData, $"new {nameof(T)} entity have been inserted to db successfully"));
         }
 
         // PUT api/<BaseController>/5
@@ -64,9 +64,9 @@ namespace PortalStore.Api.Controllers
         public async Task<IActionResult> Put([FromBody] TCore tCore, CancellationToken cancellationToken)
         {
             var tData = _mapper.Map<TCore, T>(tCore);
-            var updatedTData = await _repository.UpdateAsync(tData);
+            await _repository.UpdateAsync(tData);
             await _unitOfWork.CommitAsync(cancellationToken);
-            return Ok( CustomResult<T>.Success(updatedTData, $"{nameof(T)} is updated") );
+            return Ok( CustomResult<T>.Success($"{typeof(T).Name} is updated") );
         }
 
         // DELETE api/<BaseController>/5

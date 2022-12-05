@@ -7,13 +7,12 @@ namespace PortalStore.Application
         /// <summary>
         /// This readonly property gets the Entity Table query
         /// </summary>
-        IQueryable<TEntity> Entities {get;}
+        IQueryable<TEntity> Entities {get;} 
         Task<TEntity> GetByIdAsync(TId id); 
         IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate);
         IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includeParams);
         Task<TEntity> AddAsync(TEntity entity);
-        Task<TEntity> UpdateAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
         Task DeleteAsync(TEntity entity);
-        Task<bool> Exists(TId id);
     }
 }
