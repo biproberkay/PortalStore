@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using PortalStore.Api.Middlewares;
+using PortalStore.Api.Services;
 using PortalStore.Application;
 using PortalStore.Application.Extensions;
+using PortalStore.Application.Services;
 using PortalStore.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
 //builder.Services.AddInfrastructureServices();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IMernisService, MernisService>();
 
 var app = builder.Build();
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PortalStore.Infrastructure;
 
@@ -10,9 +11,10 @@ using PortalStore.Infrastructure;
 namespace PortalStore.Infrastructure.Migrations
 {
     [DbContext(typeof(PortalStoreDbContext))]
-    partial class PortalStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221206085500_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.11");

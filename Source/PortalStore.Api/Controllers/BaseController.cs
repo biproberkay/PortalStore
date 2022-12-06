@@ -51,17 +51,17 @@ namespace PortalStore.Api.Controllers
 
         // POST api/<BaseController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] TCore tCore, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> Post([FromBody] TCore tCore, CancellationToken cancellationToken)
         {
             var tData = _mapper.Map<TCore,T>(tCore);
             var insertedTData = await _repository.AddAsync(tData); 
             await _unitOfWork.CommitAsync(cancellationToken);
-            return Ok(CustomResult<T>.Success(insertedTData, $"new {nameof(T)} entity have been inserted to db successfully"));
+            return Ok(CustomResult<T>.Success(insertedTData, $"new {nameof(T)} entity have been inserted to db successfull"));
         }
 
         // PUT api/<BaseController>/5
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] TCore tCore, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> Put([FromBody] TCore tCore, CancellationToken cancellationToken)
         {
             var tData = _mapper.Map<TCore, T>(tCore);
             await _repository.UpdateAsync(tData);

@@ -14,6 +14,14 @@ namespace PortalStore.Application.Mappings
         {
             CreateMap<Category, CategoryCore>().ReverseMap();
             CreateMap<Product, ProductCore>().ReverseMap();
+            // OrderItem
+            CreateMap<OrderItem, OrderItemCore>().ReverseMap();
+            // Order
+            CreateMap<Order, OrderCore>().ReverseMap();
+            // Customer
+            CreateMap< Customer, CustomerCore>().ReverseMap();
+            // Address
+            CreateMap<Address, AddressCore>().ReverseMap();
         }
     }
 }

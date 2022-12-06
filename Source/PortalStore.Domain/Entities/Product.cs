@@ -7,6 +7,7 @@ namespace PortalStore.Domain.Entities
     public class Product:ProductCore
     {
         public Category Category { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 
     public class ProductCore:BaseEntity<int>
