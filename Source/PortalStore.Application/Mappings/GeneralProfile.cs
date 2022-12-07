@@ -19,7 +19,7 @@ namespace PortalStore.Application.Mappings
             // Order
             CreateMap<Order, OrderCore>().ReverseMap();
             // Customer
-            CreateMap< Customer, CustomerCore>().ReverseMap();
+            CreateMap<Customer, CustomerCore>().ReverseMap();
             // Address
             CreateMap<Address, AddressCore>().ReverseMap();
         }

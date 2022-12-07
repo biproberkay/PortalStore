@@ -9,6 +9,6 @@ namespace PortalStore.Application.Services
 {
     public interface IMernisService
     {
-        Task<bool> TrIdValidateAsync(CustomerCore customer);
+        Task<bool> TrIdValidateAsync(long TCKimlikNo, string Ad, string Soyad, int DogumYili);
     }
 }

@@ -15,18 +15,6 @@ namespace PortalStore.Infrastructure
         }
         public IQueryable<T> Entities => _dbContext.Set<T>();
 
-        public async Task<T> AddAsync(T entity)
-        {
-            await _dbContext.Set<T>().AddAsync(entity);
-            return entity;
-        }
-
-        public Task DeleteAsync(T entity)
-        {
-            _dbContext.Set<T>().Remove(entity);
-            return Task.CompletedTask;
-        }
-
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
             throw new NotImplementedException();
@@ -42,10 +30,22 @@ namespace PortalStore.Infrastructure
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
+        public async Task<T> AddAsync(T entity)
+        {
+            await _dbContext.Set<T>().AddAsync(entity);
+            return entity;
+        }
+
         public Task UpdateAsync(T entity)
         {
             T exist = _dbContext.Set<T>().Find(entity.Id);
             _dbContext.Entry(exist).CurrentValues.SetValues(entity);
+            return Task.CompletedTask;
+        }
+
+        public Task DeleteAsync(T entity)
+        {
+            _dbContext.Set<T>().Remove(entity);
             return Task.CompletedTask;
         }
     }

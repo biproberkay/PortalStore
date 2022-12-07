@@ -1,5 +1,6 @@
 ﻿using PortalStore.Application.Exceptions;
 using PortalStore.Shared.Wrappers;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Text.Json;
 
@@ -36,6 +37,11 @@ namespace PortalStore.Api.Middlewares
                     case KeyNotFoundException e:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
+                        break;
+
+                    case ValidationException e:
+                        // not found error
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
 
                     default:

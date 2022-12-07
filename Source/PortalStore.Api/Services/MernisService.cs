@@ -11,14 +11,14 @@ namespace PortalStore.Api.Services
 {
     public class MernisService : IMernisService
     {
-        public Task<bool> TrIdValidateAsync(CustomerCore customer)
+        public Task<bool> TrIdValidateAsync(long TCKimlikNo, string Ad, string Soyad, int DogumYili)
         {
 
             bool validationResult = false;
             try
             {
                 var mernisClient = new KPSPublicSoapClient(Mernis.KPSPublicSoapClient.EndpointConfiguration.KPSPublicSoap);
-                var tcKimlikDogrulamaServisResponse = mernisClient.TCKimlikNoDogrulaAsync(customer.TCID, customer.FirstName, customer.LastName, customer.BirthDate.Year).GetAwaiter().GetResult();
+                var tcKimlikDogrulamaServisResponse = mernisClient.TCKimlikNoDogrulaAsync(TCKimlikNo, Ad, Soyad, DogumYili).GetAwaiter().GetResult();
                 validationResult = tcKimlikDogrulamaServisResponse.Body.TCKimlikNoDogrulaResult;
             }
             catch (Exception ex)

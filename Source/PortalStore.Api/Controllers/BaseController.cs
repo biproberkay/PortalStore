@@ -16,9 +16,12 @@ namespace PortalStore.Api.Controllers
     [Route("api/[controller]")]
     [ApiConventionType(typeof(DefaultApiConventions))]//https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/conventions?view=aspnetcore-7.0#apply-web-api-conventions 
     [ApiController]
-    public abstract class BaseController<T, TCore, TId> : ControllerBase
-        where T : TCore
-        where TCore : BaseEntity<TId>
+    public abstract class BaseController<T, TReadQuery, TEditCommand, TCreateCommand, TDeleteCommand, TId> : ControllerBase
+        where T : IBaseEntity<TId>
+        where TReadQuery : IReadQuery<TId>
+        where TEditCommand : IEditCommand<TId>
+        where TCreateCommand : ICreateCommand
+        where TDeleteCommand : IDeleteCommand<TId>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<T, TId> _repository;
@@ -35,8 +38,8 @@ namespace PortalStore.Api.Controllers
         public IActionResult Get()
         {
             var data = _unitOfWork.GetRepository<T, TId>().Entities.ToList();
-            var coreData = _mapper.Map<List<T>, List<TCore>>(data);
-            var result = CustomResult<List<TCore>>.Success(coreData);
+            var coreData = _mapper.Map<List<T>, List<TReadQuery>>(data);
+            var result = CustomResult<List<TReadQuery>>.Success(coreData);
             return Ok(result);
         }
 
@@ -45,15 +48,15 @@ namespace PortalStore.Api.Controllers
         public async Task<IActionResult> Get(TId id)
         {
             var data = await _repository.GetByIdAsync(id);
-            var coreData = _mapper.Map<T, TCore>(data);
-            return Ok(CustomResult<TCore>.Success(coreData));
+            var coreData = _mapper.Map<T, TReadQuery>(data);
+            return Ok(CustomResult<TReadQuery>.Success(coreData));
         }
 
         // POST api/<BaseController>
         [HttpPost]
-        public virtual async Task<IActionResult> Post([FromBody] TCore tCore, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> Post([FromBody] TCreateCommand tCore, CancellationToken cancellationToken)
         {
-            var tData = _mapper.Map<TCore,T>(tCore);
+            var tData = _mapper.Map<TCreateCommand, T>(tCore);
             var insertedTData = await _repository.AddAsync(tData); 
             await _unitOfWork.CommitAsync(cancellationToken);
             return Ok(CustomResult<T>.Success(insertedTData, $"new {nameof(T)} entity have been inserted to db successfull"));
@@ -61,9 +64,9 @@ namespace PortalStore.Api.Controllers
 
         // PUT api/<BaseController>/5
         [HttpPut]
-        public virtual async Task<IActionResult> Put([FromBody] TCore tCore, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> Put([FromBody] TEditCommand tCore, CancellationToken cancellationToken)
         {
-            var tData = _mapper.Map<TCore, T>(tCore);
+            var tData = _mapper.Map<TEditCommand, T>(tCore);
             await _repository.UpdateAsync(tData);
             await _unitOfWork.CommitAsync(cancellationToken);
             return Ok( CustomResult<T>.Success($"{typeof(T).Name} is updated") );
