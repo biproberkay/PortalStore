@@ -1,22 +1,22 @@
 ﻿namespace PortalStore.Domain.Entities
 {
-    public class Customer : CustomerReadQuery, BaseEntity<int>
+    public class Customer : CustomerReadDto, IBaseEntity<int>
     {
         public virtual ICollection<Address> Address { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }
 
-    public class CustomerReadQuery : CustomerEditCommand, IReadQuery<int>
+    public class CustomerReadDto : CustomerEditDto, IReadDto<int>
     {
         public DateTime CreationDate { get; set; }
     }
 
-    public class CustomerEditCommand : CustomerCreateCommand, IEditCommand<int>
+    public class CustomerEditDto : CustomerCreateDto, IEditDto<int>
     {
         public int Id { get; set; }
     }
 
-    public class CustomerCreateCommand : ICreateCommand
+    public class CustomerCreateDto : ICreateDto
     {
         public Status Status { get; set; }
         // FirstName        nvarchar(50)
@@ -38,7 +38,7 @@
         public string Gsm { get; set; }
     }
 
-    public class CustomerDeleteCommand : IDeleteCommand<int>
+    public class CustomerDeleteDto : IDeleteDto<int>
     {
         public int Id { get; set; }
     }

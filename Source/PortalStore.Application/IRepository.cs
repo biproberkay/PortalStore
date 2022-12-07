@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 
 namespace PortalStore.Application
 {
-    public interface IRepository<TEntity, TId> where TEntity : BaseEntity<TId>
+    public interface IRepository<TEntity, TId> where TEntity : class, IBaseEntity<TId>
     {
         /// <summary>
         /// This readonly property gets the Entity Table query

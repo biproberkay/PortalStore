@@ -10,7 +10,7 @@ namespace PortalStore.Application
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TId"></typeparam>
         /// <returns></returns>
-        IRepository<T,TId> GetRepository<T,TId>() where T : BaseEntity<TId>;
+        IRepository<T,TId> GetRepository<T,TId>() where T : class, IBaseEntity<TId>;
 
         Task<int> CommitAsync(CancellationToken cancellationToken);
 

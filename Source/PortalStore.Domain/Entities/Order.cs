@@ -1,22 +1,22 @@
 namespace PortalStore.Domain.Entities
 {
-    public class Order : OrderReadQuery, BaseEntity<int>
+    public class Order : OrderReadDto, IBaseEntity<int>
     {
         public Customer Customer { get; set; }
         public Address Address { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
-    public class OrderReadQuery : OrderEditCommand, IReadQuery<int>
+    public class OrderReadDto : OrderEditDto, IReadDto<int>
     {
         public DateTime CreationDate { get; set; }
     }
 
-    public class OrderEditCommand : OrderCreateCommand, IEditCommand<int>
+    public class OrderEditDto : OrderCreateDto, IEditDto<int>
     {
         public int Id { get; set; }
     }
 
-    public class OrderCreateCommand : ICreateCommand
+    public class OrderCreateDto : ICreateDto
     {
         public Status Status { get; set; }
         // Customerld int
@@ -28,7 +28,7 @@ namespace PortalStore.Domain.Entities
         public decimal TotalPrice { get; set; }
     }
 
-    public class OrderDeleteCommand : IDeleteCommand<int>
+    public class OrderDeleteDto : IDeleteDto<int>
     {
         public int Id { get; set; }
     }

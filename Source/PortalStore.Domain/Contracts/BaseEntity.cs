@@ -7,31 +7,21 @@ using System.Threading.Tasks;
 
 namespace PortalStore.Domain.Contracts
 {
-    public abstract class BaseEntity<TId> : IReadQuery<TId>
-    {
-        public TId Id { get; set; }
-        public Status Status { get; set; }
-        public DateTime CreationDate { get; set; }
-    }
+    public interface IBaseEntity<TId> : IReadDto<TId> { }
 
-    public interface IReadQuery<TId> : IEditCommand<TId>, ICreatedAudit { }
+    public interface IReadDto<TId> : IEditDto<TId>, ICreatedAudit { }
 
-    public interface IEditCommand<TId> : ICreateCommand
-    {
-        public TId Id { get; set; }
-    }
+    public interface IEditDto<TId> : ICreateDto, IDeleteDto<TId> { }
 
-    public interface ICreateCommand
+    public interface ICreateDto
     {
         public Status Status { get; set; }
     }
 
-    public interface IDeleteCommand<TId>
+    public interface IDeleteDto<TId>
     {
         public TId Id { get; set; }
     }
-
-
     public interface ICreatedAudit 
     {
         public DateTime CreationDate { get; set; }

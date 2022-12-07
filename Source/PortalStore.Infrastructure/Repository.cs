@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace PortalStore.Infrastructure
 {
     internal class Repository<T, TId> : IRepository<T, TId>
-        where T : BaseEntity<TId>
+        where T : class,IBaseEntity<TId>
     {
         private readonly PortalStoreDbContext _dbContext;
 

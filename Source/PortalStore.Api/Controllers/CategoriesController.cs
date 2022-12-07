@@ -8,7 +8,7 @@ namespace PortalStore.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : BaseController<Category, CategoryReadQuery,CategoryEditCommand,CategoryCreateCommand,CategoryDeleteCommand, int>
+    public class CategoriesController : BaseController<Category, CategoryReadDto,CategoryEditDto,CategoryCreateDto,CategoryDeleteDto, int>
     {
         public CategoriesController(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {

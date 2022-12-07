@@ -4,21 +4,21 @@ using PortalStore.Domain.Contracts;
 
 namespace PortalStore.Domain.Entities
 {
-    public class Product : ProductReadQuery, IBaseEntity<int>
+    public class Product : ProductReadDto, IBaseEntity<int>
     {
         public Category Category { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 
-    public class ProductReadQuery : ProductEditCommand, IReadQuery<int>
+    public class ProductReadDto : ProductEditDto, IReadDto<int> 
     {
         public DateTime CreationDate { get; set; }
     }
-    public class ProductEditCommand : ProductCreateCommand, IEditCommand<int>
+    public class ProductEditDto : ProductCreateDto, IEditDto<int>
     {
         public int Id { get; set; }
     }
-    public class ProductCreateCommand : ICreateCommand
+    public class ProductCreateDto : ICreateDto
     {
         //50
         [StringLength(50)]
@@ -36,7 +36,7 @@ namespace PortalStore.Domain.Entities
         public Status Status { get; set; }
     }
 
-    public class ProductDeleteCommand : IDeleteCommand<int>
+    public class ProductDeleteDto : IDeleteDto<int>
     {
         public int Id { get; set; }
     }

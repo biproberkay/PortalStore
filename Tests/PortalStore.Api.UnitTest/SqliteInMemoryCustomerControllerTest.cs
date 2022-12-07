@@ -106,7 +106,7 @@ FROM Customers;";
         var controller = new CustomersController(_unitOfWork, _mapper, _mernisService);
 
         var result = controller.Get(1).Result as OkObjectResult;
-        CustomResult<CustomerCore> response = (CustomResult<CustomerCore>)result.Value;
+        CustomResult<CustomerReadDto> response = (CustomResult<CustomerReadDto>)result.Value;
         Assert.Equal("biproberkay@gmail.com", response.Data.Email);
     }
     #endregion
@@ -117,7 +117,7 @@ FROM Customers;";
         var controller = new CustomersController(_unitOfWork, _mapper, _mernisService);
 
         var result = controller.Get() as OkObjectResult;
-        var response = (CustomResult<List<CustomerCore>>)result.Value;
+        var response = (CustomResult<List<CustomerReadDto>>)result.Value;
 
         Assert.Collection(
             response.Data,
@@ -129,14 +129,13 @@ FROM Customers;";
     public async Task AddCustomer_ReturnFalse_WhenTCIDValidationFalse() 
     {
         var controller = new CustomersController(_unitOfWork, _mapper, _mernisService);
-        var model = new CustomerCore
+        var model = new CustomerCreateDto
         {
             FirstName = "Erdem",
             LastName = "Berkay",
             Email = "erdemberkay@gmail.com",
             TCID = 15002296634,
             BirthDate = DateTime.Parse("14.08.1988"),
-            CreationDate = DateTime.Parse("2022-12-06 09:01:12.992"),
             Gsm = "5398220128"
         };
         var result = await controller.Post(model, default) as OkObjectResult;

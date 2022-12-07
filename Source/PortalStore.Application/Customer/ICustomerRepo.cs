@@ -9,6 +9,6 @@ namespace PortalStore.Application.CustomerBL
 {
     public interface ICustomerRepo
     {
-        Task<bool> AddCustomer(CustomerCore customer);
+        Task<bool> AddCustomer(CustomerCreateDto customer);
     }
 }

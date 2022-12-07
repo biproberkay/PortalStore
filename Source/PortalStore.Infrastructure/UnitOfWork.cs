@@ -26,7 +26,7 @@ namespace PortalStore.Infrastructure
             return await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public IRepository<T, TId> GetRepository<T, TId>() where T : BaseEntity<TId>
+        public IRepository<T, TId> GetRepository<T, TId>() where T : class, IBaseEntity<TId>
         {
             _repositories ??= new();
             var type = typeof(T).Name;// versus nameof()

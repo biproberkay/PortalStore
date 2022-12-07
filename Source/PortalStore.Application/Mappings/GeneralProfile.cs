@@ -12,16 +12,48 @@ namespace PortalStore.Application.Mappings
     {
         public GeneralProfile()
         {
-            CreateMap<Category, CategoryCore>().ReverseMap();
-            CreateMap<Product, ProductCore>().ReverseMap();
+            //Category
+            //CreateDto
+            CreateMap<Category, CategoryCreateDto>().ReverseMap();
+            //EditDto
+            CreateMap<Category, CategoryEditDto>().ReverseMap();
+            //ReadDtoDto
+            CreateMap<Category, CategoryReadDto>().ReverseMap();
+
+            //Product 
+            //CreateDto
+            CreateMap<Product, ProductCreateDto>().ReverseMap();
+            //EditDto
+            CreateMap<Product, ProductEditDto>().ReverseMap();
+            //ReadDtoDto
+            CreateMap<Product, ProductReadDto>().ReverseMap();
+            
             // OrderItem
-            CreateMap<OrderItem, OrderItemCore>().ReverseMap();
+            //CreateDto
+            CreateMap<OrderItem, OrderItemCreateDto>().ReverseMap();
+            //EditDto
+            CreateMap<OrderItem, OrderItemEditDto>().ReverseMap();
+            //ReadDtoDto
+            CreateMap<OrderItem, OrderItemReadDto>().ReverseMap();
+            
             // Order
-            CreateMap<Order, OrderCore>().ReverseMap();
+            //CreateDto
+            CreateMap<Order, OrderCreateDto>().ReverseMap();
+            //EditDto
+            CreateMap<Order, OrderEditDto>().ReverseMap();
+            //ReadDtoDto
+            CreateMap<Order, OrderReadDto>().ReverseMap();
+            
             // Customer
-            CreateMap<Customer, CustomerCore>().ReverseMap();
+            //CreateDto
+            CreateMap<Customer, CustomerCreateDto>().ReverseMap();
+            CreateMap<Customer, CustomerEditDto>().ReverseMap();
+            CreateMap<Customer, CustomerReadDto>().ReverseMap();
+
             // Address
-            CreateMap<Address, AddressCore>().ReverseMap();
+            CreateMap<Address, AddressCreateDto>().ReverseMap();
+            CreateMap<Address, AddressEditDto>().ReverseMap();
+            CreateMap<Address, AddressReadDto>().ReverseMap();
         }
     }
 }

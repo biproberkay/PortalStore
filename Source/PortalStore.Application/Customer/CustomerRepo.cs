@@ -17,13 +17,13 @@ namespace PortalStore.Application.CustomerBL
             _mernis = mernis;
         }
 
-        public async Task<bool> AddCustomer(CustomerCore customer)
+        public async Task<bool> AddCustomer(CustomerCreateDto customer)
         {
             if (!customer.FirstName.StartsWith("K"))
             {
                 return false;
             }
-            if(!await _mernis.TrIdValidateAsync(customer))
+            if(!await _mernis.TrIdValidateAsync(customer.TCID, customer.FirstName, customer.LastName, customer.BirthDate.Year))
             {
                 return false;
             }

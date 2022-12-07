@@ -19,7 +19,7 @@ namespace PortalStore.Infrastructure
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
-            foreach (var entry in ChangeTracker.Entries<CreateAudit>().ToList())
+            foreach (var entry in ChangeTracker.Entries<ICreatedAudit>().ToList())
             {
                 switch (entry.State)
                 {

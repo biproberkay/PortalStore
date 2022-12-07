@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -17,6 +17,6 @@
     <ProjectReference Include="..\PortalStore.Shared\PortalStore.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Customer\Queries\" />
+    <Folder Include="Features\CustomerFeatures\Queries\" />
   </ItemGroup>
 </Project>

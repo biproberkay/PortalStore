@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace PortalStore.Domain.Entities
 {
-    public class OrderItem : OrderItemReadQuery, IBaseEntity<int>
+    public class OrderItem : OrderItemReadDto, IBaseEntity<int>
     {
         public Product Product { get; set; }
         public Order Order { get; set; }
     }
     
-    //OrderItemReadQuery
-    public class OrderItemReadQuery : OrderItemEditCommand, IReadQuery<int>
+    //OrderItemReadDto
+    public class OrderItemReadDto : OrderItemEditDto, IReadDto<int>
     {
         public DateTime CreationDate { get; set; }
     }
 
-    public class OrderItemEditCommand : OrderItemCreateCommand, IEditCommand<int>
+    public class OrderItemEditDto : OrderItemCreateDto, IEditDto<int>
     {
         public int Id { get; set; }
     }
 
-    public class OrderItemCreateCommand : ICreateCommand
+    public class OrderItemCreateDto : ICreateDto
     {
         //ProductId
         public int Productld { get; set; }
@@ -37,7 +37,7 @@ namespace PortalStore.Domain.Entities
         public int Quantity { get; set; }
         public Status Status { get; set; }
     }
-    public class OrderItemDeleteCommand : IDeleteCommand<int>
+    public class OrderItemDeleteDto : IDeleteDto<int>
     {
         public int Id { get; set; }
     }
